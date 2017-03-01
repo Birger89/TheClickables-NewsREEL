@@ -58,7 +58,7 @@ public class ContestHandler extends AbstractHandler {
 	 * Define the default recommender, currently not used.
 	 */
 	@SuppressWarnings("unused")
-	private Object contestRecommender;
+	private Recommender contestRecommender;
 
 	/**
 	 * Constructor, sets some default values.
@@ -67,7 +67,7 @@ public class ContestHandler extends AbstractHandler {
 	 * @param _contestRecommender
 	 */
 	public ContestHandler(final Properties _properties,
-			final Object _contestRecommender) {
+			final Recommender _contestRecommender) {
 
 		this.contestRecommender = _contestRecommender;
 
@@ -180,7 +180,8 @@ public class ContestHandler extends AbstractHandler {
 				// we mark this information in the article table
 				if (item.getItemID() != null) {
 					// new items shall be added to the list of items
-					recommenderItemTable.handleItemUpdate(item);
+					// recommenderItemTable.handleItemUpdate(item);
+					contestRecommender.handleItemUpdate(item);
 					item.setNumberOfRequestedResults(6);
 
 					response = "handle impression eventNotification successful";
@@ -190,7 +191,8 @@ public class ContestHandler extends AbstractHandler {
 						recommendationExpected = true;
 					}
 					if (recommendationExpected) {
-						List<Long> suggestedItemIDs = recommenderItemTable.getLastItems(item);
+						// List<Long> suggestedItemIDs = recommenderItemTable.getLastItems(item);
+						List<Long> suggestedItemIDs = contestRecommender.getRecommendations(item);
 						response = "{" + "\"recs\": {" + "\"ints\": {" + "\"3\": " + suggestedItemIDs + "}" + "}}";
 					}
 					
