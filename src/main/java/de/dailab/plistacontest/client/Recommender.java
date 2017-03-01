@@ -6,8 +6,12 @@ public class Recommender {
 
     /**
 	 * Constructor
-	 */
+     */
     public Recommender() {
         this.table = new RecommenderItemTable();
+    }
+    
+    public void handleItemUpdate(RecommenderItem item) {
+        this.table.handleItemUpdate(item);
     }
 }
