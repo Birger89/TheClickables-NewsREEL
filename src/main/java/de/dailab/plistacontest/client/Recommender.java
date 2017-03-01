@@ -2,16 +2,12 @@ package de.dailab.plistacontest.client;
 
 public class Recommender {
 
-    private static String input;
+    private static RecommenderItemTable table;
 
     /**
 	 * Constructor
-	 *
-	 * @param input
 	 */
-    public Recommender (String[] input) {
-        this.input = input[0];
-
+    public Recommender() {
+        this.table = new RecommenderItemTable();
     }
-
 }
