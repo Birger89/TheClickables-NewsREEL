@@ -1,3 +1,5 @@
+package de.dailab.plistacontest.client;
+
 public class Recommender {
 
     private String input;
