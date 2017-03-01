@@ -75,7 +75,7 @@ public class Client {
 		}
 
 		// you might want to use a recommender
-		Object recommender = null;
+		Object recommender = new Recommender();
 
 		try {
 			// initialize the recommender dynamically
