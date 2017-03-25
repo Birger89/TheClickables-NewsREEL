@@ -60,13 +60,15 @@ public class LogFileUtils {
 				Long itemID = null;
 				try {
 					itemID = Long.valueOf(jsonObjectContextSimple.get("25").toString());
+					System.err.println("Logfile Item ID: "+itemID);
 				} catch (Exception ignored) {
-					System.err.println("[Exception] no itemID found in " + tmpJsonObject);
+					System.err.println(" LOG FILE [Exception] no itemID found in " + tmpJsonObject);
 				}
 
 				Long userID = -2L;
 				try {
 					userID = Long.valueOf(jsonObjectContextSimple.get("57").toString());
+					System.err.println("Logfile User ID: "+userID);
 				} catch (Exception ignored) {
 					System.err.println("[Exception] no userID found in " + tmpJsonObject);
 				}

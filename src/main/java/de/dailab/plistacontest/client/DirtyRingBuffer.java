@@ -19,6 +19,9 @@ DEALINGS IN THE SOFTWARE.
 
 package de.dailab.plistacontest.client;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,6 +46,8 @@ public class DirtyRingBuffer<K, V> {
 	 */
 	private final Map<K, Object[]> listByKey = new HashMap<K, Object[]>();
 
+	private final static Logger logger = LoggerFactory.getLogger(DirtyRingBuffer.class);
+
 	/**
 	 * store the write index positions for each key.
 	 */
@@ -53,6 +58,7 @@ public class DirtyRingBuffer<K, V> {
 	 */
 	private int maximalNumberOfItemsPerKey;
 
+
 	/**
 	 * Constructor.
 	 * 
@@ -62,6 +68,7 @@ public class DirtyRingBuffer<K, V> {
 		super();
 		this.maximalNumberOfItemsPerKey = maximalNumberOfItemsPerKey;
 	}
+
 
 	/**
 	 * Add a new value for a key
@@ -80,7 +87,6 @@ public class DirtyRingBuffer<K, V> {
 		if (key == null) {
 			throw new RuntimeException("invalid arguments k=" + key);
 		}
-
 		//synchronized (this) 
 		{
 			V[] currentList = (V[]) this.listByKey.get(key);
@@ -110,6 +116,8 @@ public class DirtyRingBuffer<K, V> {
 	 */
 	@SuppressWarnings("unchecked")
 	public Set<V> getValuesByKey(final K key, final int numberOfValues, final Set<V> _blackListedIDs) {
+
+		System.out.println("----GET VALUES BY KEY----");
 
 		if (key == null) {
 			throw new RuntimeException("invalid arguments k=" + key);

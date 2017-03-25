@@ -44,7 +44,7 @@ public class RecommenderItem {
 		@Override
 		protected SimpleDateFormat initialValue() {
 			// the Date pattern used by plista
-			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		}
 	};
 
@@ -477,6 +477,7 @@ public class RecommenderItem {
 			} catch (Exception ignored) {
 				try {
 					itemID = Long.valueOf(jsonObj.get("itemID").toString());
+					System.err.println("RI ItemID: "+itemID);
 				} catch (Exception e) {
 					System.err.println("[Exception] no itemID found in " + _jsonMessageBody);
 				}
@@ -488,6 +489,7 @@ public class RecommenderItem {
 			} catch (Exception ignored) {
 				try {
 					userID = Long.valueOf(jsonObj.get("userID").toString());
+					System.err.println("RI UserID: "+userID);
 				} catch (Exception e) {
 					System.err.println("[Exception] no userID found in " + _jsonMessageBody);
 				}

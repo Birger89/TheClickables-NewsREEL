@@ -156,7 +156,10 @@ public class ContestHandler extends AbstractHandler {
 
 		// create an jSON object from the String
 		final JSONObject jOP = (JSONObject) JSONValue.parse(properties);
+		System.out.println("Properties ContestHandler: "+properties);
 		final JSONObject jOE = (JSONObject) JSONValue.parse(entities);
+		System.out.println("Entities ContestHandler: "+entities);
+		System.out.println("MessageType ContestHandler: "+messageType);
 		
 		// merge the different jsonObjects and correct missing itemIDs
 		jOP.putAll(jOE);
@@ -230,7 +233,7 @@ public class ContestHandler extends AbstractHandler {
 	 * 
 	 * @param messageType
 	 *            the messageType of the incoming contest server message
-	 * @param _jsonString
+	 * @param _jsonMessageBody
 	 *            the incoming contest server message
 	 * @return the response to the contest server
 	 */
@@ -252,6 +255,7 @@ public class ContestHandler extends AbstractHandler {
 		// in a complex if/switch statement we handle the differentTypes of
 		// messages
 		if ("item_update".equalsIgnoreCase(messageType)) {
+			System.out.println("MESSAGE "+_jsonMessageBody);
 
 			// we extract itemID, domainID, text and the timeTime, create/update
 			final RecommenderItem recommenderItem = RecommenderItem
@@ -259,10 +263,11 @@ public class ContestHandler extends AbstractHandler {
 
 			// we mark this information in the article table
 			if (recommenderItem.getItemID() != null) {
+				System.out.println("=======================Handle=========================");
 				recommenderItemTable.handleItemUpdate(recommenderItem);
 			}
 
-			response = ";item_update successfull";
+			response = "item_update successfull";
 		}
 
 		else if ("recommendation_request".equalsIgnoreCase(messageType)) {
@@ -270,8 +275,9 @@ public class ContestHandler extends AbstractHandler {
 			// we handle a recommendation request
 			try {
 				// parse the new recommender request
-				RecommenderItem currentRequest = RecommenderItem.parseRecommendationRequest(_jsonMessageBody);
 
+				RecommenderItem currentRequest = RecommenderItem.parseRecommendationRequest(_jsonMessageBody);
+				recommenderItemTable.handleItemUpdate(currentRequest);
 				// gather the items to be recommended
 				List<Long> resultList = recommenderItemTable.getLastItems(currentRequest);
 				if (resultList == null) {
@@ -288,6 +294,8 @@ public class ContestHandler extends AbstractHandler {
 			}
 		} else if ("event_notification".equalsIgnoreCase(messageType)) {
 
+			System.out.println("MESSAGE "+_jsonMessageBody);
+
 			// parse the type of the event
 			final RecommenderItem item = RecommenderItem.parseEventNotification(_jsonMessageBody);
 			final String eventNotificationType = item.getNotificationType();
@@ -299,13 +307,14 @@ public class ContestHandler extends AbstractHandler {
 				// we mark this information in the article table
 				if (item.getItemID() != null) {
 					// new items shall be added to the list of items
+					System.out.println("=======================Handle=========================");
 					recommenderItemTable.handleItemUpdate(item);
 
 					response = "handle impression eventNotification successful";
 				}
 				// click refers to recommendations clicked by the user
 			} else if ("click".equalsIgnoreCase(eventNotificationType)) {
-
+				recommenderItemTable.handleItemUpdate(item);
 				response = "handle click eventNotification successful";
 
 			} else {
