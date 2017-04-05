@@ -44,7 +44,7 @@ public class RecommenderItem {
 		@Override
 		protected SimpleDateFormat initialValue() {
 			// the Date pattern used by plista
-			return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+			return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		}
 	};
 

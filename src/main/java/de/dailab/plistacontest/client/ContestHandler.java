@@ -20,13 +20,14 @@ package de.dailab.plistacontest.client;
 
 import java.io.IOException;
 import java.net.URLDecoder;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import de.dailab.plistacontest.client.inventory.Item;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 import org.json.simple.JSONObject;
@@ -53,6 +54,10 @@ public class ContestHandler extends AbstractHandler {
 	 * here we store all relevant data about items.
 	 */
 	private final RecommenderItemTable recommenderItemTable = new RecommenderItemTable();
+
+    private HashMap<Long, Set<Item>> domains = new HashMap<>();
+    private HashMap<Long, Set<Long>> users = new HashMap<>();
+    private HashMap<Long, Item> items = new HashMap<>();
 
 	/**
 	 * Define the default recommender, currently not used.
@@ -151,7 +156,8 @@ public class ContestHandler extends AbstractHandler {
 	 */
 	@SuppressWarnings("unchecked")
 	private String handleIdomaarMessage(final String messageType, final String properties, final String entities) {
-		// write all data from the server to a file
+        System.out.println("Handle idomaar message");
+        // write all data from the server to a file
 		// logger.info(messageType + "\t" + properties + "\t" + entities);
 
 		// create an jSON object from the String
@@ -180,8 +186,12 @@ public class ContestHandler extends AbstractHandler {
 				// we mark this information in the article table
 				if (item.getItemID() != null) {
 					// new items shall be added to the list of items
-					recommenderItemTable.handleItemUpdate(item);
-					item.setNumberOfRequestedResults(6);
+//					recommenderItemTable.handleItemUpdate(item);
+//					item.setNumberOfRequestedResults(6);
+
+                    if (0 < item.getText().length()){
+                        updateItem(item);
+                    }
 
 					response = "handle impression eventNotification successful";
 					
@@ -190,8 +200,8 @@ public class ContestHandler extends AbstractHandler {
 						recommendationExpected = true;
 					}
 					if (recommendationExpected) {
-						List<Long> suggestedItemIDs = recommenderItemTable.getLastItems(item);
-						response = "{" + "\"recs\": {" + "\"ints\": {" + "\"3\": " + suggestedItemIDs + "}" + "}}";
+//						List<Long> suggestedItemIDs = recommenderItemTable.getLastItems(item);
+						response = recommendationRequest(item).toString();
 					}
 					
 				}
@@ -234,9 +244,10 @@ public class ContestHandler extends AbstractHandler {
 	 *            the incoming contest server message
 	 * @return the response to the contest server
 	 */
-	@SuppressWarnings("unused")
+	@SuppressWarnings({"unused", "Duplicates"})
 	private String handleTraditionalMessage(final String messageType,
 			final String _jsonMessageBody) {
+		System.out.println("Traditional message");
 
 		// write all data from the server to a file
 		logger.info(messageType + "\t" + _jsonMessageBody);
@@ -261,7 +272,7 @@ public class ContestHandler extends AbstractHandler {
 			if (recommenderItem.getItemID() != null) {
 				recommenderItemTable.handleItemUpdate(recommenderItem);
 			}
-
+			updateItem(recommenderItem);
 			response = ";item_update successfull";
 		}
 
@@ -271,16 +282,7 @@ public class ContestHandler extends AbstractHandler {
 			try {
 				// parse the new recommender request
 				RecommenderItem currentRequest = RecommenderItem.parseRecommendationRequest(_jsonMessageBody);
-
-				// gather the items to be recommended
-				List<Long> resultList = recommenderItemTable.getLastItems(currentRequest);
-				if (resultList == null) {
-					response = "[]";
-					System.out.println("invalid resultList");
-				} else {
-					response = resultList.toString();
-				}
-				response = getRecommendationResultJSON(response);
+				response = getRecommendationResultJSON(recommendationRequest(currentRequest).toString());
 
 				// TODO? might handle the the request as impressions
 			} catch (Throwable t) {
@@ -324,6 +326,108 @@ public class ContestHandler extends AbstractHandler {
 		}
 		return response;
 	}
+
+	private void addItemIdUserSet(long userId, long itemId){
+        if (users.get(userId) != null) {
+            users.get(userId).add(itemId);
+        } else {
+            Set<Long> l = new HashSet<>();
+            l.add(itemId);
+            users.put(userId, l);
+        }
+
+    }
+
+	private List<Long> recommendationRequest(RecommenderItem currentRequest) {
+        addItemIdUserSet(currentRequest.getUserID(), currentRequest.getItemID());
+
+        List<Long> result = new ArrayList<>();
+        Map<Long, Integer> itemScore = new HashMap<>();
+        Set<Item> domainItems = domains.get(currentRequest.getDomainID());
+        Item item = items.get(currentRequest.getItemID());
+        if (item != null) {
+            for (Item it: items.values()) {
+                itemScore.put(it.getId(), compareKeywords(item, it));
+            }
+            result = itemScore.entrySet().stream()
+                    .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
+                    .map(Map.Entry::getKey)
+                    .limit(currentRequest.getNumberOfRequestedResults())
+                    .collect(Collectors.toList());
+        } else if (domainItems != null && 0 < domainItems.size()) {
+            result = domainItems.stream()
+                    .sorted((e1, e2) -> Long.compare(e2.getTimestamp(), e1.getTimestamp()))
+                    .map(Item::getId)
+                    .limit(currentRequest.getNumberOfRequestedResults())
+                    .collect(Collectors.toList());
+        }
+        if (result.size() < currentRequest.getNumberOfRequestedResults()) {
+            result.addAll(items.entrySet().stream()
+                    .sorted((e1, e2) -> Long.compare(e2.getValue().getTimestamp(), e1.getValue().getTimestamp()))
+                    .map(d -> d.getValue().getId())
+                    .limit(currentRequest.getNumberOfRequestedResults()-result.size())
+                    .collect(Collectors.toList())
+            );
+        }
+
+        return result;
+    }
+
+	private void updateItem(RecommenderItem recommenderItem) {
+        Item item = new Item(recommenderItem.getItemID(), "", recommenderItem.getText(), System.currentTimeMillis());
+        Item existingItem = items.get(item.getId());
+
+        if (existingItem == null){
+            items.put(recommenderItem.getItemID(), item);
+        } else if (existingItem.getDocument().size() < item.getDocument().size()){
+            items.put(item.getId(), item);
+        } else {
+            existingItem.setTimestamp(System.currentTimeMillis());
+        }
+
+        Set<Item> domainItemList = domains.get(recommenderItem.getDomainID());
+        if (domainItemList != null) {
+            domainItemList.add(item);
+        } else {
+            domainItemList = new HashSet<>();
+            domainItemList.add(item);
+            domains.put(recommenderItem.getDomainID(), domainItemList);
+        }
+    }
+
+	private int compareKeywords(Item firstItem, Item secondItem) {
+		int match = 0;
+		if(firstItem == null) {
+			System.out.println("first item null");
+			return 0;
+		}
+		if(secondItem == null) {
+			System.out.println("second item null");
+			return 0;
+		}
+		List<String> firstItemKeywords = new ArrayList<>(firstItem.getDocument());
+		List<String> secondItemKeywords = new ArrayList<>(secondItem.getDocument());
+		if(firstItemKeywords == null) {
+			System.out.println("first keywords null");
+			return 0;
+		}
+		if(secondItemKeywords == null) {
+			System.out.println("second keywords null");
+			return 0;
+		}
+
+		for (int i = 0; i < firstItemKeywords.size(); i++) {
+			for (int j = 0; j < secondItemKeywords.size(); j++) {
+				if(firstItemKeywords.get(i).equals(secondItemKeywords.get(j))) {
+					match++;
+					break;
+				}
+			}
+		}
+		return match;
+	}
+
+
 
 	/**
 	 * Response handler.
