@@ -116,8 +116,7 @@ public class DirtyRingBuffer<K, V> {
 	 */
 	@SuppressWarnings("unchecked")
 	public Set<V> getValuesByKey(final K key, final int numberOfValues, final Set<V> _blackListedIDs) {
-
-		System.out.println("----GET VALUES BY KEY----");
+		
 
 		if (key == null) {
 			throw new RuntimeException("invalid arguments k=" + key);

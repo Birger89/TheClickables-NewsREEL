@@ -255,7 +255,6 @@ public class ContestHandler extends AbstractHandler {
 		// in a complex if/switch statement we handle the differentTypes of
 		// messages
 		if ("item_update".equalsIgnoreCase(messageType)) {
-			System.out.println("MESSAGE "+_jsonMessageBody);
 
 			// we extract itemID, domainID, text and the timeTime, create/update
 			final RecommenderItem recommenderItem = RecommenderItem
@@ -263,7 +262,6 @@ public class ContestHandler extends AbstractHandler {
 
 			// we mark this information in the article table
 			if (recommenderItem.getItemID() != null) {
-				System.out.println("=======================Handle=========================");
 				recommenderItemTable.handleItemUpdate(recommenderItem);
 			}
 
@@ -294,7 +292,6 @@ public class ContestHandler extends AbstractHandler {
 			}
 		} else if ("event_notification".equalsIgnoreCase(messageType)) {
 
-			System.out.println("MESSAGE "+_jsonMessageBody);
 
 			// parse the type of the event
 			final RecommenderItem item = RecommenderItem.parseEventNotification(_jsonMessageBody);
@@ -307,7 +304,6 @@ public class ContestHandler extends AbstractHandler {
 				// we mark this information in the article table
 				if (item.getItemID() != null) {
 					// new items shall be added to the list of items
-					System.out.println("=======================Handle=========================");
 					recommenderItemTable.handleItemUpdate(item);
 
 					response = "handle impression eventNotification successful";

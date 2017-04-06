@@ -21,6 +21,7 @@ package de.dailab.plistacontest.client;
 
 
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -32,28 +33,75 @@ public class RecommenderItemTable {
 	 * We create a data structure providing a fixed size array/ring buffer for all relevant domains (news portals)
 	 * first parameter (string) defines the domainID; the second parameter the type of the stored newsID
 	 */
+
+
 	private DirtyRingBuffer<String, Long> table = new DirtyRingBuffer<String, Long>(100);
 
 	private Set<Long> users = new HashSet<Long>();
 
+	private static Map<Long, Set<Long>> userBasedTable = new HashMap<Long, Set<Long>>();
 
-	private Long getNearestNeighbor(Long userID){
+	private static final String FILEPATH = "output.dat";
+
+	private static BufferedWriter bufferedWriter;
+
+	public RecommenderItemTable() {
+		try{
+		bufferedWriter = new BufferedWriter(new FileWriter(new File(FILEPATH)));}
+		catch(IOException exceptiom){
+			exceptiom.printStackTrace();
+		}
+	}
+
+	/**
+	 * Adds the userID and itemID to the userBasedTable Map
+	 * @param userID
+	 * @param itemID
+	 */
+	private void addItem(Long userID, Long itemID){
+		users.add(userID);
+		Set<Long> itemList = userBasedTable.get(userID);
+		if(itemList==null){
+			itemList = new HashSet<Long>();
+		}
+		itemList.add(itemID);
+		userBasedTable.put(userID,itemList);
+	}
+
+	/**
+	 * Calculate similarityIndex between two users
+	 * @param user
+	 * @param targetUser
+	 * @return similarityIntdex
+	 */
+	private Integer getSimilarityIndex(Long user, Long targetUser){
+		Set<Long> neighborItems = userBasedTable.get(user);
+		Set<Long> userItems = userBasedTable.get(targetUser);
+		neighborItems.retainAll(userItems);
+		return neighborItems.size();
+	}
+
+	/**
+	 * Get the user that is most similar to the target user
+	 * @param _item
+	 * @return nearest neighbor
+	 */
+	private Long getNearestNeighbor(final RecommenderItem _item){
+		Long userID = _item.getUserID();
 		Long neighborID=0L;
 		Set<Long> blackListedIDs = new HashSet<Long>();
 		blackListedIDs.add(0L);
-		Set<Long> userItems = table.getValuesByKey(userID+"", 10,blackListedIDs);
-		Set<Long> neighborItems;
 		Integer similarityIndex=0;
+		Integer similarityTemp;
 		if(users.size()>0){
 			for (Long user: users) {
 				if(user == userID){
 					continue;
 				}
-				neighborItems = table.getValuesByKey(user+"", 10,blackListedIDs);
-				neighborItems.retainAll(userItems);
-				if(neighborItems.size()>similarityIndex){
+				similarityTemp = getSimilarityIndex(user,userID);
+				if(similarityTemp>similarityIndex){
 					neighborID = user;
-					similarityIndex=neighborItems.size();
+					similarityIndex=similarityTemp;
 				}
 			}
 		}
@@ -66,7 +114,6 @@ public class RecommenderItemTable {
 	 * @return
 	 */
 	public boolean handleItemUpdate(final RecommenderItem _item) {
-		System.out.println("=======================Handle=========================");
 		
 		// check the item
 		if (_item == null || _item.getItemID() == null || _item.getItemID() == 0L || _item.getDomainID() == null) {
@@ -74,16 +121,35 @@ public class RecommenderItemTable {
 		}
 		
 		// add the item to the table
-		// yara
 		if(_item.getUserID() == 0){
 			System.out.println("Can't track user");
-			return true;
+			table.addValueByKey(_item.getDomainID()+"",_item.getItemID());
+			return false;
 		}
-		users.add(_item.getUserID());
-		System.out.println("Number of users: "+users.size());
-		table.addValueByKey(_item.getUserID()+"", _item.getItemID());
-		//table.addValueByKey(_item.getDomainID() + "", _item.getItemID());
+
+		addItem(_item.getUserID(), _item.getItemID());
+		table.addValueByKey(_item.getDomainID()+"",_item.getItemID());
 		return true;
+	}
+
+
+	public static void writeTransactions() {
+		String transactionItems = "";
+		for(Map.Entry<Long, Set<Long>> entry : userBasedTable.entrySet()){
+			if(entry.getValue().size()<=0){
+				continue;
+			}
+			for (Long item : entry.getValue()) {
+				System.out.print(item);
+				transactionItems+=(item+" ");
+			}
+			transactionItems+=System.getProperty("line.separator");
+			try {
+				bufferedWriter.write(transactionItems);
+			}catch (IOException exc){
+				exc.printStackTrace();
+			}
+		}
 	}
 
 
@@ -94,52 +160,40 @@ public class RecommenderItemTable {
 	 * @return a list of items. The itemID present in the request and itemID=0 will not be contained in the result. 
 	 */
 	public List<Long> getLastItems(final RecommenderItem _currentRequest) {
-		System.out.println("-----GET LAST ITEMS-----");
-
 		Integer numberOfRequestedResults = _currentRequest.getNumberOfRequestedResults();
-		System.out.println("Number of Req. Results: "+numberOfRequestedResults);
 		Long itemID = _currentRequest.getItemID();
-		System.out.println("ITEM ID: "+itemID);
 		Long domainID = _currentRequest.getDomainID();
-		System.out.println("Number of Req. Results: "+numberOfRequestedResults);
-
-		// yara
 		Long userID = _currentRequest.getUserID();
-		System.out.println("USER ID: "+userID);
-		Long neighborID = 2423831855L;
+		//Add User and Item to the Map @userBasedTable
+		addItem(userID,itemID);
 
-		
 		// handle invalid values
 		if (numberOfRequestedResults == null || numberOfRequestedResults.intValue() < 0 || numberOfRequestedResults.intValue() > 10 || domainID == null) {
 			return new ArrayList<Long>(0);
 		}
 
-		neighborID = getNearestNeighbor(userID);
-		System.out.println("NEIGHBOR: "+neighborID);
-
-		Set<Long> bLID = new HashSet<Long>();
-		bLID.add(0L);
-		Set<Long> userItems = table.getValuesByKey(userID+"", 10, bLID);
-		for (Long item: userItems) {
-			System.out.println("AN ITEM: "+item);
-		}
+		Long neighborID = 0L;
+		neighborID = getNearestNeighbor(_currentRequest);
+		Set<Long> result = userBasedTable.get(neighborID);
 
 		// create a set of blacklisted items
 		Set<Long> blackListedIDs = new HashSet<Long>();
 		blackListedIDs.add(0L);
 		blackListedIDs.add(itemID);
-		//blackListedIDs.addAll(userItems);
-		Set<Long> result = table.getValuesByKey(neighborID+"", numberOfRequestedResults.intValue(), blackListedIDs);
+
+		System.out.println("RESULT SIZE: "+result.size());
+		// if user-based algorithm couldn't recommend, get the suggestions, considering the domainID and the blacklist
+		if(result.size()<numberOfRequestedResults.intValue()){
+			result.addAll(table.getValuesByKey(domainID+"",numberOfRequestedResults.intValue() - result.size(), blackListedIDs));
+		}
 		System.out.println("RESULT SIZE: "+result.size());
 		if(result.size()>0) {
 			for (Long item : result) {
 				System.out.println("User: " + neighborID + " Item: " + item);
 			}
 		}
-		// get the suggestions, considering the domainID and the blacklist
-		//Set<Long> result = table.getValuesByKey(userID+"", numberOfRequestedResults.intValue(), blackListedIDs);
-		
-		// copy the results to a new list and return
+		writeTransactions();
+
 		List<Long> returnResult = new ArrayList<Long>();
 		returnResult.addAll(result);
 		return returnResult;

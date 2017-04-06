@@ -26,12 +26,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContestHandler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ContestHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ContestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="316" column="60" lean-forward="false" selection-start-line="316" selection-start-column="60" selection-end-line="316" selection-end-column="60" />
-              <folding />
+            <state relative-caret-position="1973">
+              <caret line="256" column="58" lean-forward="false" selection-start-line="256" selection-start-column="58" selection-end-line="256" selection-end-column="58" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,30 +61,11 @@
       <file leaf-file-name="RecommenderItemTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItemTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="73" column="9" lean-forward="false" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+            <state relative-caret-position="390">
+              <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
               <folding>
-                <element signature="e#1521#1535#0" expanded="true" />
-                <element signature="e#1581#1587#0" expanded="true" />
-                <element signature="e#1702#1708#0" expanded="true" />
-                <element signature="e#4339#4345#0" expanded="true" />
-                <element signature="e#4588#4594#0" expanded="true" />
-                <element signature="e#5254#5260#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientAndContestHandler0MQ.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ClientAndContestHandler0MQ.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2685">
-              <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#12697#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#11384#11385#0" expanded="false" />
-                <element signature="e#11398#11399#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2988#2994#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -135,6 +118,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="DirtyRingBuffer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/DirtyRingBuffer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1410">
+              <caret line="118" column="8" lean-forward="false" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+              <folding>
+                <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -155,6 +150,8 @@
       <find>valuesByID</find>
       <find>MESSAGE</find>
       <find>parseItemUpdate</find>
+      <find>get key</find>
+      <find>handle</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -169,9 +166,9 @@
         <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItem.java" />
         <option value="$PROJECT_DIR$/src/main/java/eu/crowdrec/contest/sender/LogFileUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/DirtyRingBuffer.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItemTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ContestHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/DirtyRingBuffer.java" />
       </list>
     </option>
   </component>
@@ -196,7 +193,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -245,62 +242,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="eu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crowdrec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TheClickables-NewsREEL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="eu" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crowdrec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="contest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sender" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TheClickables-NewsREEL" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="de" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -317,10 +258,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TheClickables-NewsREEL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assembly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="RunManager">
@@ -532,6 +487,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="656f062c-bab4-44dd-895b-5508120e92f2" name="Default" comment="" />
@@ -561,6 +519,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959569" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299285" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -572,7 +531,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -585,25 +543,13 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/eu/crowdrec/contest/sender/RequestSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItemTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -612,12 +558,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2685">
           <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#12697#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#11384#11385#0" expanded="false" />
-            <element signature="e#11398#11399#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -678,7 +619,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3135">
           <caret line="240" column="69" lean-forward="false" selection-start-line="240" selection-start-column="69" selection-end-line="240" selection-end-column="69" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -703,12 +646,8 @@
         <state relative-caret-position="225">
           <caret line="35" column="89" lean-forward="false" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="89" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -718,12 +657,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2685">
           <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#12697#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#11384#11385#0" expanded="false" />
-            <element signature="e#11398#11399#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -731,7 +665,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1965">
           <caret line="155" column="58" lean-forward="false" selection-start-line="155" selection-start-column="58" selection-end-line="155" selection-end-column="58" />
-          <folding />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -792,7 +728,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3135">
           <caret line="240" column="69" lean-forward="false" selection-start-line="240" selection-start-column="69" selection-end-line="240" selection-end-column="69" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -817,12 +755,8 @@
         <state relative-caret-position="225">
           <caret line="35" column="89" lean-forward="true" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="89" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -832,12 +766,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2685">
           <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#12697#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#11384#11385#0" expanded="false" />
-            <element signature="e#11398#11399#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +774,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1965">
           <caret line="155" column="58" lean-forward="true" selection-start-line="155" selection-start-column="58" selection-end-line="155" selection-end-column="58" />
-          <folding />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -906,7 +837,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -931,12 +864,8 @@
         <state relative-caret-position="1335">
           <caret line="109" column="31" lean-forward="false" selection-start-line="109" selection-start-column="19" selection-end-line="109" selection-end-column="31" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -945,7 +874,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="48" column="4" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="88" />
-          <folding />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1006,7 +937,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3840">
           <caret line="256" column="58" lean-forward="true" selection-start-line="256" selection-start-column="58" selection-end-line="256" selection-end-column="58" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1022,7 +955,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
           <caret line="64" column="70" lean-forward="false" selection-start-line="64" selection-start-column="40" selection-end-line="64" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1031,12 +963,8 @@
         <state relative-caret-position="990">
           <caret line="83" column="40" lean-forward="false" selection-start-line="83" selection-start-column="40" selection-end-line="83" selection-end-column="40" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1045,7 +973,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
           <caret line="79" column="9" lean-forward="false" selection-start-line="79" selection-start-column="9" selection-end-line="79" selection-end-column="9" />
-          <folding />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1106,7 +1036,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2310">
           <caret line="185" column="57" lean-forward="false" selection-start-line="185" selection-start-column="41" selection-end-line="185" selection-end-column="57" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1115,12 +1047,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1129,7 +1057,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,11 +1120,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="67" column="34" lean-forward="true" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderTable.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ClientAndContestHandler0MQ.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="206" column="65" lean-forward="false" selection-start-line="206" selection-start-column="62" selection-end-line="206" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="930">
@@ -1240,24 +1177,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/DirtyRingBuffer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/output.dat" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/Client.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="71" column="4" lean-forward="false" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="4" />
+        <state relative-caret-position="893">
+          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ClientAndContestHandler0MQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2685">
-          <caret line="206" column="43" lean-forward="false" selection-start-line="206" selection-start-column="19" selection-end-line="206" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#12697#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#11384#11385#0" expanded="false" />
-            <element signature="e#11398#11399#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1269,34 +1194,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/Client.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ContestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="893">
-          <caret line="94" column="12" lean-forward="false" selection-start-line="94" selection-start-column="12" selection-end-line="94" selection-end-column="12" />
-          <folding />
+        <state relative-caret-position="1973">
+          <caret line="256" column="58" lean-forward="false" selection-start-line="256" selection-start-column="58" selection-end-line="256" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/RecommenderItemTable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="73" column="9" lean-forward="false" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+        <state relative-caret-position="390">
+          <caret line="43" column="4" lean-forward="false" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
           <folding>
-            <element signature="e#1521#1535#0" expanded="true" />
-            <element signature="e#1581#1587#0" expanded="true" />
-            <element signature="e#1702#1708#0" expanded="true" />
-            <element signature="e#4339#4345#0" expanded="true" />
-            <element signature="e#4588#4594#0" expanded="true" />
-            <element signature="e#5254#5260#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#2988#2994#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/ContestHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/de/dailab/plistacontest/client/DirtyRingBuffer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="316" column="60" lean-forward="false" selection-start-line="316" selection-start-column="60" selection-end-line="316" selection-end-column="60" />
-          <folding />
+        <state relative-caret-position="1410">
+          <caret line="118" column="8" lean-forward="false" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+          <folding>
+            <marker date="1491484164996" expanded="false" signature="5770:5786" ph="&lt;~&gt;" />
+          </folding>
         </state>
       </provider>
     </entry>
